@@ -1,6 +1,6 @@
 import { Tabs, message, Form, Input, Button, Checkbox, Modal, Alert } from 'antd'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-
+import "./index.css"
 const FormItem = Form.Item
 const { TabPane } = Tabs
 interface ILoginModalProps {
@@ -9,6 +9,15 @@ interface ILoginModalProps {
     setUserMessage: any
     setHasLogined: any
 }
+
+const displayNoneStyle = { style: { display: 'none' } as React.CSSProperties };
+const posRightStyle = {
+    textAlign: 'right'
+} as React.CSSProperties
+const modalStyle = {
+    borderRadius: 6
+}
+
 export default function LoginModal(props: ILoginModalProps) {
     const { modalVisible, setModalVisible, setUserMessage, setHasLogined } = props
     const [action, setAction] = useState('login')
@@ -82,14 +91,17 @@ export default function LoginModal(props: ILoginModalProps) {
         <Modal
             title='用户中心'
             wrapClassName='vertical-center-modal'
+            className="user-center-modal"
             visible={modalVisible}
             onCancel={handleCancel}
             onOk={handleOk}
             okText='关闭'
-            cancelButtonProps={cancelButtonStyle}
+            cancelButtonProps={displayNoneStyle}
+            footer={null}
+            style={modalStyle}
         >
             <Tabs type="card" onChange={handelTabKeyChange}>
-                <TabPane tab="登录" key="1">
+                <TabPane tab="登录" key="1" className="tab-pane-wrapper">
                     <Form name='login' layout='vertical' form={form1} onFinish={handleSubmitSuccess} initialValues={{ remember: true }}>
                         <FormItem label="账户" name='userName' rules={userNameRule}>
                             <Input placeholder="请输入您的账号" />
@@ -97,7 +109,7 @@ export default function LoginModal(props: ILoginModalProps) {
                         <FormItem label="密码" name='userPassword' rules={passwordRule}>
                             <Input.Password placeholder="请输入您的密码" />
                         </FormItem>
-                        <FormItem>
+                        <FormItem style={posRightStyle}>
                             <Button type="primary" htmlType="submit">登录</Button>
                         </FormItem>
                     </Form>
@@ -113,7 +125,7 @@ export default function LoginModal(props: ILoginModalProps) {
                         <FormItem label='确认密码' name='newSurePassword' rules={passwordRule}>
                             <Input.Password placeholder="请再次输入密码" />
                         </FormItem>
-                        <FormItem>
+                        <FormItem style={posRightStyle}>
                             <Button type="primary" htmlType="submit">注册</Button>
                         </FormItem>
                     </Form>

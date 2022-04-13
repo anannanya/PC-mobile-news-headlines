@@ -27,7 +27,6 @@ export default function PcNewsBlock(props: IPcNewsBlockProps) {
     ))
         : '没有加载到任何新闻';
 
-    console.log(112, newsList)
     useEffect(() => {
         const fetchOption = {
             method: 'GET'

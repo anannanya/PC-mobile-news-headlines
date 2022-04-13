@@ -1,0 +1,20 @@
+.ant-card-head {
+    border: none !important;
+}
+
+.custom-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.custom-image {
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.custom-description p {
+    color: #999;
+}

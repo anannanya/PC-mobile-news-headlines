@@ -6,13 +6,13 @@ import './index.css'
 export default function PcIndex() {
     return (
         <div className="pc">
-            <div className="pcHeader">
+            <div className="pc-header">
                 <PcHeader />
             </div>
-            <div className="pcNewsCOntainer">
+            <div className="pc-news-container">
                 <PCNewsContainer />
             </div>
-            <div className="pcFooter">
+            <div className="pc-footer">
                 <PcFooter />
             </div>
         </div>

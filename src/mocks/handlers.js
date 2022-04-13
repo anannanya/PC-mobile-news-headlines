@@ -6,13 +6,12 @@ export const handlers = [
     rest.get('/article', (req, res, ctx) => {
         const count = req.url.searchParams.get('count')
         const type = req.url.searchParams.get('type')
-        const data = new Array(Number(count)).fill('').map((item, index) => {
+        const data = new Array(5).fill('').map((item, index) => {
             return {
-                title: `${type} news ${index}${Math.random()}`,
+                title: `news ${index}${Math.random()}`,
                 uniquekey: index
             }
         })
-        console.log(2345, count, type)
         return res(
             ctx.status(200),
             ctx.json(data),
@@ -31,5 +30,6 @@ export const handlers = [
             ctx.status(200),
             ctx.json(data),
         )
-    })
+    }),
+
 ]
