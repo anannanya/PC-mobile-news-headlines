@@ -4,6 +4,7 @@ const API_TOKEN = 'hLrAlbgOrV1ViijiASR1u7Ce1US1e75AHpa58g76';
 
 export type IFetchNewsParams = {
     _limit?: number;
+    _start?: number;
 }
 export type IFetchNewsResponse = INewsData[];
 export interface INewsData {
@@ -13,7 +14,7 @@ export interface INewsData {
     imageUrl: string,
     newsSite: string,
     summary: string,
-    publishedAt: string
+    publishedAt: string,
 }
 // export interface INewsData {
 //     id: string;
@@ -28,12 +29,12 @@ export interface INewsData {
 // }
 
 
-export interface Meta {
-    found: number;
-    returned: number;
-    limit: number;
-    page: number;
-}
+// export interface Meta {
+//     found: number;
+//     returned: number;
+//     limit: number;
+//     page: number;
+// }
 
 export const fetchNews = async (params: IFetchNewsParams): Promise<IFetchNewsResponse> => {
     try {

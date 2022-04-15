@@ -27,4 +27,8 @@ export const CardTitleWrapper = styled.h3`
 `;
 
 export const CardSourceWrapper = styled.p`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
 `;

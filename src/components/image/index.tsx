@@ -36,16 +36,6 @@ export const BetterImage = (props: IProps) => {
         width,
         height,
     }), [width, height]);
-    // const retry = (src: string) => {
-    //     const img = new Image();
-    //     img.onerror = () => {
-    //         retryTimesRef.current--;
-    //         if (retryTimesRef.current > 0) {
-    //             retry(src);
-    //         }
-    //     }
-    //     img.src = `${src}?${new Date().getTime()}`
-    // }
 
     // 预拉取
     useLayoutEffect(() => {

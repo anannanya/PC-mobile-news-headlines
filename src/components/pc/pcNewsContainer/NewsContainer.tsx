@@ -40,7 +40,9 @@ export default function NewsContainer() {
                                     </Carousel>
                                 </div>
                             </div>
-                            <div className="top-right-container"></div>
+                            <div className="top-right-container">
+                                <PcNewsBlock width="100%" />
+                            </div>
                         </div>
                         <div className="bottom-area">
                             <PCNewsImageBlock count={6} type="国际头条" width={'100%'} cartTitle="国际头条" imageWidth={136} cardGridWidth={150} imageHeight={88} />
@@ -49,7 +51,6 @@ export default function NewsContainer() {
 
                     {/* <Tabs className="tabs_news">
                         <TabPane tab="头条新闻" key="1">
-                            <PcNewsBlock count={22} type="top" width="100%" />
                         </TabPane>
                         <TabPane tab="国际" key="2">
                             <PcNewsBlock count={22} type="guoji" width="100%" />

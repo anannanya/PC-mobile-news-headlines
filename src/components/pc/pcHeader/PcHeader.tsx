@@ -3,6 +3,8 @@ import { Row, Col, Menu, Tabs, message, Form, Input, Button, Checkbox, Modal } f
 import { AppstoreOutlined } from '@ant-design/icons'
 import { NavLink, Route } from 'react-router-dom'
 import LoginModal from "../../loginModal"
+import { ReactComponent as RocketIcon } from '../../../assets/rocket.svg';
+
 
 // const { SubMenu } = Menu
 const MenuItemGroup = Menu.ItemGroup
@@ -48,41 +50,15 @@ export default function PcHeader(props: any) {
     )
     return (
         <header>
-            <Row>
+            <Row style={{ paddingTop: 12 }}>
                 <Col span={2}></Col>
                 <Col span={4}>
                     <a href="/" className="logo">
-                        <img src={require('../../../image/logo.png')} alt="logo" />
-                        <span>ReactNews</span>
+                        <RocketIcon width={24} height={24} />
+                        <span>Rocket News</span>
                     </a>
                 </Col>
                 <Col span={12}>
-                    <Menu mode='horizontal' onClick={handleMenuClick} selectedKeys={[current]} className='menuTabs'>
-                        <Menu.Item key='headNews' icon={<AppstoreOutlined />}>
-                            头条
-                        </Menu.Item>
-                        <Menu.Item key='social' icon={<AppstoreOutlined />}>
-                            社会
-                        </Menu.Item>
-                        <Menu.Item key='china' icon={<AppstoreOutlined />}>
-                            国内
-                        </Menu.Item>
-                        <Menu.Item key='international' icon={<AppstoreOutlined />}>
-                            国际
-                        </Menu.Item>
-                        <Menu.Item key='fun' icon={<AppstoreOutlined />}>
-                            娱乐
-                        </Menu.Item>
-                        <Menu.Item key='sport' icon={<AppstoreOutlined />}>
-                            体育
-                        </Menu.Item>
-                        <Menu.Item key='science' icon={<AppstoreOutlined />}>
-                            科技
-                        </Menu.Item>
-                        <Menu.Item key='fashion' icon={<AppstoreOutlined />}>
-                            时尚
-                        </Menu.Item>
-                    </Menu>
                 </Col>
                 <Col span={4} className='loginView'>
                     {loginView}

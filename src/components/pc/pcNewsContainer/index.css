@@ -18,3 +18,23 @@
 .custom-description p {
     color: #999;
 }
+
+.content-wrapper {
+    width: 100%;
+}
+
+.top-right-container {
+    flex: 1;
+    height: 306px;
+    width: calc(100% - 600px);
+}
+
+.change-logo {
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.change-logo.rotate {
+    transform: rotate(-360deg);
+    transition: transform .5s ease-in-out;
+}

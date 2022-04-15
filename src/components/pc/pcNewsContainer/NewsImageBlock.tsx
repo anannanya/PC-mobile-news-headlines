@@ -4,7 +4,10 @@ import ContentLoader from 'react-content-loader';
 import { Router, Route, Link } from 'react-router-dom'
 import { fetchNews, IFetchNewsResponse, INewsData } from '../../../api';
 import { BetterImage } from '../../image'
+import { Tooltip } from '../tooltip';
 import { CardDescriptionWrapper, CardImageWrapper, CardSourceWrapper, CardTitleWrapper, CardWrapper } from './styled';
+import { ReactComponent as UnStarLogo } from '../../../assets/unstar.svg';
+import { ReactComponent as StarredLogo } from '../../../assets/starred.svg';
 
 
 interface IPcNewsBlockProps extends React.CSSProperties {
@@ -132,7 +135,9 @@ export default function NewsImageBlock(props: IPcNewsBlockProps) {
                         </CardImageWrapper>
                         <CardDescriptionWrapper className="custom-description">
                             <CardTitleWrapper style={titleStyle}>{newsItem.summary}</CardTitleWrapper>
-                            <CardSourceWrapper style={sourceStyle}>{newsItem.newsSite}</CardSourceWrapper>
+                            <CardSourceWrapper style={sourceStyle}>
+                                <p style={{ marginBottom: 0 }}>{newsItem.newsSite}</p>
+                            </CardSourceWrapper>
                         </CardDescriptionWrapper>
                     </CardWrapper>
                 </li>
@@ -152,7 +157,7 @@ export default function NewsImageBlock(props: IPcNewsBlockProps) {
             <Card bordered={false} style={{
                 width: width,
             }}>
-                <h2 style={h2Style}>国际新闻</h2>
+                <h2 style={h2Style}>Headlines</h2>
                 {renderNewsList()}
             </Card>
         </div>
