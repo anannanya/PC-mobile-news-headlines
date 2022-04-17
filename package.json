@@ -34,6 +34,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://anannanya.github.io/PC-mobile-news-headlines/build",
   "eslintConfig": {
     "extends": [
       "react-app",
