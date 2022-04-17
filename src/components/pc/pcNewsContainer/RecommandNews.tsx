@@ -7,12 +7,14 @@ import { fetchNews, IFetchNewsResponse, INewsData } from '../../../api';
 import { ReactComponent as ChangeLogo } from '../../../assets/change.svg';
 import { Tooltip } from '../tooltip';
 
+const MIN_WIDTH = 400;
+
 const Loader = () => (
     <ContentLoader
         speed={0}
-        width={600}
+        width={MIN_WIDTH}
         height={250}
-        viewBox="0 0 600 250"
+        viewBox={`0 0 ${MIN_WIDTH} 250`}
         backgroundColor="#f3f3f3"
         foregroundColor="#ecebeb"
     >
@@ -37,7 +39,7 @@ const headerStyle = {
 }
 const style = {
     height: 25,
-    maxWidth: 600,
+    minWidth: MIN_WIDTH,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
@@ -76,6 +78,7 @@ export default function PcNewsBlock(props: IPcNewsBlockProps) {
                 <header style={headerStyle}>
                     <h2 style={{ margin: 0 }}>Recommends</h2>
                     <ChangeLogo className={classnames('change-logo', { rotate: isIconRotating })} width={16} height={16} onClick={changeNews} />
+                    <span style={{ fontSize: 12, userSelect: 'none', marginLeft: 8 }}>换一批</span>
                 </header>
                 <div>
                     {

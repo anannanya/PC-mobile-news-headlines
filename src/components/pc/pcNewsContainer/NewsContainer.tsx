@@ -1,12 +1,12 @@
 import { useCallback, useMemo } from "react"
 import { Row, Col, Tabs, Carousel } from 'antd'
-import PcNewsBlock from './PcNewsBlock'
-import PCNewsImageBlock from './NewsImageBlock'
+import RecommandNews from './RecommandNews'
+import PCNewsImageBlock from './NewsCards'
 import { BetterImage } from "../../image"
-import carouseImage1 from '../../../image/carousel_1.jpg';
-import carouseImage2 from '../../../image/carousel_2.jpg';
-import carouseImage3 from '../../../image/carousel_3.jpg';
-import carouseImage4 from '../../../image/carousel_4.jpg';
+import carouseImage1 from '../../../image/rocket1.png';
+import carouseImage2 from '../../../image/rocket2.png';
+import carouseImage3 from '../../../image/rocket3.png';
+import carouseImage4 from '../../../image/rocket4.png';
 import "./index.css";
 const { TabPane } = Tabs
 
@@ -33,15 +33,23 @@ export default function NewsContainer() {
                             <div className="top-left-container">
                                 <div className="carousel">
                                     <Carousel {...settings}>
-                                        <div><BetterImage src={carouseImage1} alt="" size={imageSize} /></div>
-                                        <div><BetterImage src={carouseImage2} alt="" size={imageSize} /></div>
-                                        <div><BetterImage src={carouseImage3} alt="" size={imageSize} /></div>
-                                        <div><BetterImage src={carouseImage4} alt="" size={imageSize} /></div>
+                                        <a href="http://www.cmse.gov.cn/xwzx/202204/t20220416_49524.html" target="_blank">
+                                            <div><BetterImage src={carouseImage1} alt="" size={imageSize} /></div>
+                                        </a>
+                                        <a href="http://www.cmse.gov.cn/xwzx/202204/t20220414_49516.html" target="_blank">
+                                            <div><BetterImage src={carouseImage2} alt="" size={imageSize} /></div>
+                                        </a>
+                                        <a href="http://www.cmse.gov.cn/gjhz/201905/t20190510_23746.html" target="_blank">
+                                            <div><BetterImage src={carouseImage3} alt="" size={imageSize} /></div>
+                                        </a>
+                                        <a href="http://www.cmse.gov.cn/gjhz/201906/t20190612_23749.html" target="_blank">
+                                            <div><BetterImage src={carouseImage4} alt="" size={imageSize} /></div>
+                                        </a>
                                     </Carousel>
                                 </div>
                             </div>
-                            <div className="top-right-container">
-                                <PcNewsBlock width="100%" />
+                            <div className="top-medium-container">
+                                <RecommandNews />
                             </div>
                         </div>
                         <div className="bottom-area">

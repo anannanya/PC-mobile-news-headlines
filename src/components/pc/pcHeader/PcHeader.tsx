@@ -4,38 +4,31 @@ import { AppstoreOutlined } from '@ant-design/icons'
 import { NavLink, Route } from 'react-router-dom'
 import LoginModal from "../../loginModal"
 import { ReactComponent as RocketIcon } from '../../../assets/rocket.svg';
+import { useDispatch, useSelector } from "react-redux"
+import { IStore, IUser } from "../../../redux"
+import { logout as logoutAction } from "../../../redux/actions/user";
 
 
 // const { SubMenu } = Menu
 const MenuItemGroup = Menu.ItemGroup
-export default function PcHeader(props: any) {
+export default function PcHeader() {
     // const { userShow } = props.form
     const [current, setCurrent] = useState('headNews')
-    const [hasLogined, setHasLogined] = useState(false)
     const [modalVisible, setmodalVisible] = useState(false)
-    const [userMessage, setUserMessage] = useState({
-        userNickName: 'ln',
-        userId: 0
-    })
+    const currentUser = useSelector<IStore, IUser>(state => state.user);
+    const hasLogin = Boolean(currentUser);
+    const dispatch = useDispatch();
 
-    const handleMenuClick = useCallback((e: any) => {
-        setCurrent(e.key)
-    }, [])
     const handleLogin = useCallback(() => {
-        console.log(11)
         setmodalVisible(true)
     }, [])
     const logout = useCallback(() => {
-        setUserMessage({
-            userNickName: '',
-            userId: 0
-        })
-        setHasLogined(false)
+        dispatch(logoutAction())
     }, [])
 
-    const loginView = hasLogined ? (
+    const loginView = hasLogin ? (
         <div key='logout' className="register">
-            <Button type='primary' htmlType="button">{userMessage.userNickName}</Button>
+            <Button type='primary' htmlType="button">{currentUser!.name}</Button>
             &nbsp;&nbsp;
             {/* <NavLink target='' to=''> */}
             <Button type='dashed' htmlType="button">个人中心</Button>
@@ -69,8 +62,6 @@ export default function PcHeader(props: any) {
                 <LoginModal
                     modalVisible={modalVisible}
                     setModalVisible={setmodalVisible}
-                    setUserMessage={setUserMessage}
-                    setHasLogined={setHasLogined}
                 />
             </Row>
         </header >

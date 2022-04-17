@@ -31,8 +31,6 @@ export default function MobileHeader() {
             <LoginModal
                 modalVisible={modalVisible}
                 setModalVisible={setmodalVisible}
-                setUserMessage={setUserMessage}
-                setHasLogined={setHasLogined}
             />
         </header>
     )

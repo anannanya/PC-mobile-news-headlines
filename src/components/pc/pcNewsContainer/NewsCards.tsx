@@ -1,13 +1,16 @@
 import { Card } from 'antd'
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import ContentLoader from 'react-content-loader';
-import { Router, Route, Link } from 'react-router-dom'
 import { fetchNews, IFetchNewsResponse, INewsData } from '../../../api';
-import { BetterImage } from '../../image'
-import { Tooltip } from '../tooltip';
+
 import { CardDescriptionWrapper, CardImageWrapper, CardSourceWrapper, CardTitleWrapper, CardWrapper } from './styled';
-import { ReactComponent as UnStarLogo } from '../../../assets/unstar.svg';
-import { ReactComponent as StarredLogo } from '../../../assets/starred.svg';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { IStarredNewsIds, IStore, IUser } from '../../../redux';
+import { NewsCard } from './NewsCard';
+import { storage } from '../../../common/storage';
+import { addStarMultiply } from '../../../redux/actions/star';
+import { addNews } from '../../../redux/actions/news';
 
 
 interface IPcNewsBlockProps extends React.CSSProperties {
@@ -82,16 +85,12 @@ const Loader = () => (
 
 const LIMIT_NUM = 40;
 
-export default function NewsImageBlock(props: IPcNewsBlockProps) {
-    const { type, count, cartTitle, imageWidth, imageHeight, width, cardGridWidth } = props
+export default function NewsCards(props: IPcNewsBlockProps) {
+    const { type, count, imageWidth, imageHeight, width, cardGridWidth } = props
     const [news, setNews] = useState<IFetchNewsResponse | null>(null)
-    const [a, setA] = useState(false);
-
-    const imageSize = useMemo(() => ({
-        width: imageWidth,
-        height: imageHeight
-    }), [imageWidth, imageHeight])
-
+    const starredIds = useSelector<IStore, IStarredNewsIds>(state => state.starredNewsIds);
+    const currentUser = useSelector<IStore, IUser>(state => state.user);
+    const dispatch = useDispatch();
     const girdStyle = useMemo(() => {
         return {
             width: cardGridWidth,
@@ -102,21 +101,6 @@ export default function NewsImageBlock(props: IPcNewsBlockProps) {
             borderRadius: 8,
         } as React.CSSProperties
     }, [])
-    const titleStyle = {
-        overflow: 'hidden',
-        display: '-webkit-box',
-        textOverflow: 'ellipsis',
-        WebkitLineClamp: 3,
-        WebkitBoxOrient: 'vertical',
-        fontSize: 12,
-    } as React.CSSProperties;
-
-    const sourceStyle = {
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        fontSize: 12,
-    } as React.CSSProperties;
 
     const renderNewsList = () => {
         if (!news) {
@@ -126,35 +110,32 @@ export default function NewsImageBlock(props: IPcNewsBlockProps) {
                 </Card.Grid>
             ));
         }
-        return news.map((newsItem: INewsData, index) => (
-            <Card.Grid style={girdStyle} key={index}>
-                <li key={index} style={liStyle}>
-                    <CardWrapper href={newsItem.url} target="_blank" className="custom-card">
-                        <CardImageWrapper className="custom-image">
-                            <BetterImage size={imageSize} alt="" src={newsItem.imageUrl} />
-                        </CardImageWrapper>
-                        <CardDescriptionWrapper className="custom-description">
-                            <CardTitleWrapper style={titleStyle}>{newsItem.summary}</CardTitleWrapper>
-                            <CardSourceWrapper style={sourceStyle}>
-                                <p style={{ marginBottom: 0 }}>{newsItem.newsSite}</p>
-                            </CardSourceWrapper>
-                        </CardDescriptionWrapper>
-                    </CardWrapper>
-                </li>
-            </Card.Grid>
-        ))
+        return news.map((newsItem: INewsData, index) => {
+            const isStarred = starredIds.includes(newsItem.id);
+            return <NewsCard currentUser={currentUser} key={index} isStarred={isStarred} newsItem={newsItem} cardGridWidth={cardGridWidth} imageWidth={imageWidth} imageHeight={imageHeight} />
+        })
     }
 
     useEffect(() => {
         fetchNews({ _limit: LIMIT_NUM }).then((res: IFetchNewsResponse) => {
             setNews(res)
-            setA(true);
+            dispatch(addNews(res));
         })
     }, [type, count])
 
+    useEffect(() => {
+        if (currentUser) {
+            const currentUserInCache = storage.get(currentUser.name) || {};
+            const starredIdsInCache = currentUserInCache.starredList || [];
+            dispatch(addStarMultiply({
+                ids: starredIdsInCache
+            }));
+        }
+    }, [currentUser]);
+
     return (
         <div>
-            <Card bordered={false} style={{
+            <Card className="news-card-list-wrapper" bordered={false} style={{
                 width: width,
             }}>
                 <h2 style={h2Style}>Headlines</h2>

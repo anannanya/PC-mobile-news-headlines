@@ -23,8 +23,8 @@
     width: 100%;
 }
 
-.top-right-container {
-    flex: 1;
+.top-medium-container {
+    flex-shrink: 1;
     height: 306px;
     width: calc(100% - 600px);
 }
@@ -37,4 +37,8 @@
 .change-logo.rotate {
     transform: rotate(-360deg);
     transition: transform .5s ease-in-out;
+}
+
+.news-card-list-wrapper .ant-card-body {
+    padding: 0
 }

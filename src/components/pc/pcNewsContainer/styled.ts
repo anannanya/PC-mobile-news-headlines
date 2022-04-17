@@ -26,9 +26,20 @@ export const CardTitleWrapper = styled.h3`
     flex-grow: 1;
 `;
 
-export const CardSourceWrapper = styled.p`
+export const CardSourceWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1em;
+`;
+
+export const StarIconWrapper = styled.div`
+    &:hover {
+        background: rgba(31, 35, 41, .1);
+    }
+    &:active {
+        background: rgba(31, 35, 41, .2);
+    }
+    padding: 4px;
+    border-radius: 6px;
 `;

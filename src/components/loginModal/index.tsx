@@ -1,13 +1,18 @@
 import { Tabs, message, Form, Input, Button, Checkbox, Modal, Alert } from 'antd'
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { storage } from '../../common/storage'
+import { login, register } from '../../redux/actions/user'
 import "./index.css"
 const FormItem = Form.Item
 const { TabPane } = Tabs
+interface userMessageOption {
+    userNickName: string;
+    userId: number
+}
 interface ILoginModalProps {
     modalVisible: boolean
-    setModalVisible: any
-    setUserMessage: any
-    setHasLogined: any
+    setModalVisible: (modalVisible: boolean) => void
 }
 
 const displayNoneStyle = { style: { display: 'none' } as React.CSSProperties };
@@ -19,8 +24,9 @@ const modalStyle = {
 }
 
 export default function LoginModal(props: ILoginModalProps) {
-    const { modalVisible, setModalVisible, setUserMessage, setHasLogined } = props
+    const { modalVisible, setModalVisible } = props
     const [action, setAction] = useState('login')
+    const dispatch = useDispatch();
 
     const [form1] = Form.useForm()
     const [form2] = Form.useForm()
@@ -33,30 +39,57 @@ export default function LoginModal(props: ILoginModalProps) {
         setModalVisible(false)
     }, [])
     const handleSubmitSuccess = useCallback((formData) => {
-        if (formData.newUserPassword !== formData.newSurePassword) {
-            message.error('确认密码与设置密码不一致！')
-            return
-        }
-        const myFetchOptions = {
-            method: 'GET'
-        };
-        const params = `action=${action}&username=${formData.userName}&password=${formData.userPassword}` +
-            `&r_userName=${formData.newUserName}&r_password=${formData.newUserPassword}&r_confirmPassword=${formData.newSurePassword}`
-        console.log(111, params)
-        fetch("http://newsapi.gugujiankong.com/Handler.ashx?" + params, myFetchOptions).then(response =>
-            response.json()).then(json => {
-                setUserMessage({ userNickName: json.NickUserName, userid: json.UserId });
-            }
-            );
-        message.success("请求成功！");
+        const username = formData.username;
+        const password = formData.password;
+        // const myFetchOptions = {
+        //     method: 'GET'
+        // };
+        // const params = `action=${action}&username=${formData.userName}&password=${formData.userPassword}` +
+        //     `&r_userName=${formData.newUserName}&r_password=${formData.newUserPassword}&r_confirmPassword=${formData.newSurePassword}`
+        // fetch("http://newsapi.gugujiankong.com/Handler.ashx?" + params, myFetchOptions).then(response =>
+        //     response.json()).then(json => {
+        //         setUserMessage({ userNickName: json.NickUserName, userId: json.UserId });
+        //     }
+        //     );
         form1.resetFields()
         form2.resetFields()
+
         if (action === 'login') {
-            setHasLogined(true)
-            setUserMessage({ userNickName: formData.userName, userid: '' })
+            const parsedRes = storage.get(username)
+            if (!parsedRes) {
+                message.error("该用户尚未注册");
+                return;
+            }
+            if (parsedRes.username !== username || parsedRes.password !== password) {
+                message.error("账号密码错误");
+                return;
+            }
+            dispatch(login({
+                username
+            }));
+            message.success("登录成功");
+        } else {
+            if (password !== formData.passwordAgain) {
+                message.error('确认密码与设置密码不一致！')
+                return
+            }
+            const res = storage.get(username)
+            if (res) {
+                message.error("该用户名已注册");
+                return;
+            }
+            storage.set(username, {
+                username,
+                password,
+            });
+            dispatch(login({
+                username
+            }));
+            message.success("注册成功，即将自动登录！");
         }
+
         setModalVisible(false);
-    }, [])
+    }, [action])
 
     const handelTabKeyChange = useCallback((key) => {
         if (key === '1') {
@@ -103,10 +136,10 @@ export default function LoginModal(props: ILoginModalProps) {
             <Tabs type="card" onChange={handelTabKeyChange}>
                 <TabPane tab="登录" key="1" className="tab-pane-wrapper">
                     <Form name='login' layout='vertical' form={form1} onFinish={handleSubmitSuccess} initialValues={{ remember: true }}>
-                        <FormItem label="账户" name='userName' rules={userNameRule}>
+                        <FormItem label="账户" name='username' rules={userNameRule}>
                             <Input placeholder="请输入您的账号" />
                         </FormItem>
-                        <FormItem label="密码" name='userPassword' rules={passwordRule}>
+                        <FormItem label="密码" name='password' rules={passwordRule}>
                             <Input.Password placeholder="请输入您的密码" />
                         </FormItem>
                         <FormItem style={posRightStyle}>
@@ -116,13 +149,13 @@ export default function LoginModal(props: ILoginModalProps) {
                 </TabPane>
                 <TabPane tab='注册' key='2'>
                     <Form name='zhuce' layout='vertical' form={form2} onFinish={handleSubmitSuccess} initialValues={{ remember: true }}>
-                        <FormItem label='账户' name='newUserName' rules={userNameRule}>
+                        <FormItem label='账户' name='username' rules={userNameRule}>
                             <Input placeholder="请输入您的账号" />
                         </FormItem>
-                        <FormItem label='密码' name='newUserPassword' rules={passwordRule}>
+                        <FormItem label='密码' name='password' rules={passwordRule}>
                             <Input.Password placeholder="请输入您的密码" />
                         </FormItem>
-                        <FormItem label='确认密码' name='newSurePassword' rules={passwordRule}>
+                        <FormItem label='确认密码' name='passwordAgain' rules={passwordRule}>
                             <Input.Password placeholder="请再次输入密码" />
                         </FormItem>
                         <FormItem style={posRightStyle}>
