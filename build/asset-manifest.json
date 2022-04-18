@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/PC-mobile-news-headlines/build/static/css/main.50240e14.css",
-    "main.js": "/PC-mobile-news-headlines/build/static/js/main.5a34276e.js",
-    "static/media/rocket3.png": "/PC-mobile-news-headlines/build/static/media/rocket3.de89dca4a145398e0078.png",
-    "static/media/rocket1.png": "/PC-mobile-news-headlines/build/static/media/rocket1.f1d24518a2c2509f151a.png",
-    "static/media/rocket4.png": "/PC-mobile-news-headlines/build/static/media/rocket4.d3ecaf3651f19e9ad8c3.png",
-    "static/media/rocket2.png": "/PC-mobile-news-headlines/build/static/media/rocket2.cb4dfe6e90d3a91bd4b2.png",
+    "main.js": "/PC-mobile-news-headlines/build/static/js/main.5bcf7c66.js",
+    "static/media/rocket1.png": "/PC-mobile-news-headlines/build/static/media/rocket1.483a483ed9b363e8fe5f.png",
+    "static/media/rocket3.jpg": "/PC-mobile-news-headlines/build/static/media/rocket3.b6d9c05f076151bd0770.jpg",
+    "static/media/rocket4.jpg": "/PC-mobile-news-headlines/build/static/media/rocket4.5ed9a9f7fc413fcf8bc2.jpg",
+    "static/media/rocket2.jpg": "/PC-mobile-news-headlines/build/static/media/rocket2.e22018ccedaa025889e4.jpg",
     "static/media/broken_image.png": "/PC-mobile-news-headlines/build/static/media/broken_image.7d9733a0346298d0fbbf.png",
     "static/media/rocket.svg": "/PC-mobile-news-headlines/build/static/media/rocket.9017cc21f0288097759a5c47c215ce19.svg",
     "static/media/unstar.svg": "/PC-mobile-news-headlines/build/static/media/unstar.74dbfe25545088b8156b27d7b91a9c91.svg",
@@ -14,10 +14,10 @@
     "index.html": "/PC-mobile-news-headlines/build/index.html",
     "static/media/starred.svg": "/PC-mobile-news-headlines/build/static/media/starred.f2faee042dd80dd4dbade2dba7459605.svg",
     "main.50240e14.css.map": "/PC-mobile-news-headlines/build/static/css/main.50240e14.css.map",
-    "main.5a34276e.js.map": "/PC-mobile-news-headlines/build/static/js/main.5a34276e.js.map"
+    "main.5bcf7c66.js.map": "/PC-mobile-news-headlines/build/static/js/main.5bcf7c66.js.map"
   },
   "entrypoints": [
     "static/css/main.50240e14.css",
-    "static/js/main.5a34276e.js"
+    "static/js/main.5bcf7c66.js"
   ]
 }

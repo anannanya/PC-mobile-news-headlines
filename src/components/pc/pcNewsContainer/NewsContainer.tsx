@@ -4,9 +4,9 @@ import RecommandNews from './RecommandNews'
 import PCNewsImageBlock from './NewsCards'
 import { BetterImage } from "../../image"
 import carouseImage1 from '../../../image/rocket1.png';
-import carouseImage2 from '../../../image/rocket2.png';
-import carouseImage3 from '../../../image/rocket3.png';
-import carouseImage4 from '../../../image/rocket4.png';
+import carouseImage2 from '../../../image/rocket2.jpg';
+import carouseImage3 from '../../../image/rocket3.jpg';
+import carouseImage4 from '../../../image/rocket4.jpg';
 import "./index.css";
 const { TabPane } = Tabs
 
