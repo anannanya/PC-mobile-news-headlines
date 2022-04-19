@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { storage } from '../common/storage';
 
 const API_TOKEN = 'hLrAlbgOrV1ViijiASR1u7Ce1US1e75AHpa58g76';
 
@@ -16,18 +17,6 @@ export interface INewsData {
     summary: string,
     publishedAt: string,
 }
-// export interface INewsData {
-//     id: string;
-//     title: string;
-//     description: string;
-//     url: string;
-//     author: string;
-//     image: string;
-//     language: string;
-//     category: string[];
-//     published: string;
-// }
-
 
 // export interface Meta {
 //     found: number;
@@ -42,9 +31,17 @@ export const fetchNews = async (params: IFetchNewsParams): Promise<IFetchNewsRes
             params: {
                 ...params,
             }
-        })
+        });
+        // 最多缓存 50 条数据
+        const cacheNews = [...res.data, ...(storage.get("news") || [])].slice(0, 50);
+        storage.set('news', cacheNews);
         return res.data;
     } catch (e) {
-        throw Error('FetchError')
+        const cache = storage.get('news');
+        if (cache) {
+            return cache.slice(0, params._limit);
+        } else {
+            throw Error('FetchError')
+        }
     }
 };
