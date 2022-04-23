@@ -11,11 +11,10 @@ import "./index.css";
 const { TabPane } = Tabs
 
 const imageSize = {
-    width: 500,
-    height: 300
+    width: '100%',
+    height: 300,
 }
 export default function NewsContainer() {
-
     const settings = useMemo(() => (
         {
             dots: true,

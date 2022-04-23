@@ -17,7 +17,7 @@ export default function PcIndex() {
     }, []);
 
     return (
-        <div className="pc" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="pc" style={{ position: 'relative', overflow: 'hidden', minWidth: 615 }}>
             <div className="pc-header">
                 <PcHeader />
             </div>

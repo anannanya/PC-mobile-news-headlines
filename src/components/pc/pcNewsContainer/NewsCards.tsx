@@ -23,7 +23,6 @@ interface IPcNewsBlockProps extends React.CSSProperties {
 }
 
 const h2Style = {
-    paddingLeft: 8,
     paddingTop: 12,
     fontFamily: 'Google Sans, sans-serif',
 }

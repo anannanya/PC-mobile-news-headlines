@@ -7,23 +7,23 @@ import { fetchNews, IFetchNewsResponse, INewsData } from '../../../api';
 import { ReactComponent as ChangeLogo } from '../../../assets/change.svg';
 import { Tooltip } from '../tooltip';
 
-const MIN_WIDTH = 400;
+const MIN_WIDTH = 200;
 
 const Loader = () => (
     <ContentLoader
         speed={0}
-        width={MIN_WIDTH}
+        width={'100%'}
         height={250}
-        viewBox={`0 0 ${MIN_WIDTH} 250`}
+        viewBox={`0 0 100% 250`}
         backgroundColor="#f3f3f3"
         foregroundColor="#ecebeb"
     >
         <rect x="0" y="0" rx="5" ry="5" width="100%" height="16" />
         <rect x="0" y="26" rx="5" ry="5" width="80%" height="16" />
         <rect x="0" y="52" rx="5" ry="5" width="100%" height="16" />
-        <rect x="0" y="78" rx="5" ry="5" width="40%" height="16" />
+        <rect x="0" y="78" rx="5" ry="5" width="60%" height="16" />
         <rect x="0" y="104" rx="5" ry="5" width="80%" height="16" />
-        <rect x="0" y="130" rx="5" ry="5" width="40%" height="16" />
+        <rect x="0" y="130" rx="5" ry="5" width="70%" height="16" />
         <rect x="0" y="156" rx="5" ry="5" width="100%" height="16" />
         <rect x="0" y="182" rx="5" ry="5" width="90%" height="16" />
         <rect x="0" y="208" rx="5" ry="5" width="100%" height="16" />
@@ -74,11 +74,11 @@ export default function PcNewsBlock(props: IPcNewsBlockProps) {
 
     return (
         <div>
-            <Card className='newsCard' bordered={false}>
+            <Card className='news-recommand-list' bordered={false}>
                 <header style={headerStyle}>
                     <h2 style={{ margin: 0 }}>Recommends</h2>
                     <ChangeLogo className={classnames('change-logo', { rotate: isIconRotating })} width={16} height={16} onClick={changeNews} />
-                    <span style={{ fontSize: 12, userSelect: 'none', marginLeft: 8 }}>换一批</span>
+                    <span className='change-text' style={{ fontSize: 12, userSelect: 'none', marginLeft: 8 }}>换一批</span>
                 </header>
                 <div>
                     {

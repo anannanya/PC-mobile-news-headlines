@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/PC-mobile-news-headlines/build/static/css/main.50240e14.css",
-    "main.js": "/PC-mobile-news-headlines/build/static/js/main.5bcf7c66.js",
+    "main.css": "/PC-mobile-news-headlines/build/static/css/main.28638b9e.css",
+    "main.js": "/PC-mobile-news-headlines/build/static/js/main.458e3fed.js",
     "static/media/rocket1.png": "/PC-mobile-news-headlines/build/static/media/rocket1.483a483ed9b363e8fe5f.png",
     "static/media/rocket3.jpg": "/PC-mobile-news-headlines/build/static/media/rocket3.b6d9c05f076151bd0770.jpg",
     "static/media/rocket4.jpg": "/PC-mobile-news-headlines/build/static/media/rocket4.5ed9a9f7fc413fcf8bc2.jpg",
@@ -13,11 +13,11 @@
     "static/media/change.svg": "/PC-mobile-news-headlines/build/static/media/change.a8f970968c206ed65ae55e7cf7727644.svg",
     "index.html": "/PC-mobile-news-headlines/build/index.html",
     "static/media/starred.svg": "/PC-mobile-news-headlines/build/static/media/starred.f2faee042dd80dd4dbade2dba7459605.svg",
-    "main.50240e14.css.map": "/PC-mobile-news-headlines/build/static/css/main.50240e14.css.map",
-    "main.5bcf7c66.js.map": "/PC-mobile-news-headlines/build/static/js/main.5bcf7c66.js.map"
+    "main.28638b9e.css.map": "/PC-mobile-news-headlines/build/static/css/main.28638b9e.css.map",
+    "main.458e3fed.js.map": "/PC-mobile-news-headlines/build/static/js/main.458e3fed.js.map"
   },
   "entrypoints": [
-    "static/css/main.50240e14.css",
-    "static/js/main.5bcf7c66.js"
+    "static/css/main.28638b9e.css",
+    "static/js/main.458e3fed.js"
   ]
 }

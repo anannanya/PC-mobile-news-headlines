@@ -26,12 +26,14 @@
 .top-medium-container {
     flex-shrink: 1;
     height: 306px;
-    width: calc(100% - 600px);
+    min-width: 0;
+    flex-grow: 1;
 }
 
 .change-logo {
     margin-left: 8px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .change-logo.rotate {
@@ -40,5 +42,11 @@
 }
 
 .news-card-list-wrapper .ant-card-body {
-    padding: 0
+    padding: 0;
+}
+
+@media screen and (max-width: 760px) {
+    .news-recommand-list .change-text {
+        display: none;
+    }
 }

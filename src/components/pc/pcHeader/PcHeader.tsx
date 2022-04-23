@@ -47,8 +47,8 @@ export default function PcHeader() {
                 <Col span={2}></Col>
                 <Col span={4}>
                     <a href="/" className="logo">
-                        <RocketIcon width={24} height={24} />
-                        <span>Rocket News</span>
+                        <RocketIcon style={{ flexShrink: 0 }} width={24} height={24} />
+                        <span style={{ whiteSpace: 'nowrap' }}>Rocket News</span>
                     </a>
                 </Col>
                 <Col span={12}>

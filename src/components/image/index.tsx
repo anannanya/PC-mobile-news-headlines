@@ -2,7 +2,7 @@ import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import ContentLoader from "react-content-loader"
 import BrokenImage from '../../assets/broken_image.png';
 
-const Loader = ({ width, height }: { width: number, height: number }) => (
+const Loader = ({ width, height }: { width: number | string, height: number | string }) => (
     <ContentLoader
         speed={2}
         width={width}
@@ -19,7 +19,7 @@ interface IProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     placeholderSrc?: string;
     errorSrc?: string;
     src: string;
-    size: { width: number, height: number };
+    size: { width: number | string, height: number | string };
     retryTimes?: number; // 支持重试的次数
 }
 
