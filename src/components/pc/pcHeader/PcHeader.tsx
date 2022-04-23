@@ -14,12 +14,16 @@ const MenuItemGroup = Menu.ItemGroup
 export default function PcHeader() {
     // const { userShow } = props.form
     const [current, setCurrent] = useState('headNews')
+    const [hasInitLoginModal, setHasInitLoginModal] = useState(false);
     const [modalVisible, setmodalVisible] = useState(false)
     const currentUser = useSelector<IStore, IUser>(state => state.user);
     const hasLogin = Boolean(currentUser);
     const dispatch = useDispatch();
 
-    const handleLogin = useCallback(() => {
+    const openLoginModal = useCallback(() => {
+        if (!hasInitLoginModal) {
+            setHasInitLoginModal(true);
+        }
         setmodalVisible(true)
     }, [])
     const logout = useCallback(() => {
@@ -37,7 +41,7 @@ export default function PcHeader() {
             <Button type="ghost" onClick={logout}>退出</Button>
         </div>
     ) : (
-        <Button type='text' key='register' onClick={handleLogin}>
+        <Button type='text' key='register' onClick={openLoginModal}>
             <AppstoreOutlined />注册/登录
         </Button>
     )
@@ -59,10 +63,10 @@ export default function PcHeader() {
                 <Col span={2} >
 
                 </Col>
-                <LoginModal
+                {hasInitLoginModal && <LoginModal
                     modalVisible={modalVisible}
                     setModalVisible={setmodalVisible}
-                />
+                />}
             </Row>
         </header >
     )
